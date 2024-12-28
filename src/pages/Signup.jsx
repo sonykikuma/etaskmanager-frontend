@@ -39,10 +39,14 @@ const Signup = () => {
       console.log(result);
       // const { success, message, error } = result;
       const { message } = result;
-      handleSuccess(message);
-      setTimeout(() => {
-        navigate("/login");
-      }, 1000);
+      if (response.ok) {
+        handleSuccess(message);
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000);
+      } else {
+        handleError("check if mail already registered");
+      }
 
       // if (success) {
       //   handleSuccess(message);
