@@ -25,14 +25,14 @@ const Projects = () => {
         {error && <p>An error occured while fetching projects</p>}
         <div className="row">
           {renderedProjects?.map((project) => (
-            <div className="col-md-6" key={project._id}>
+            <div className="col-md-6" key={project?._id}>
               <div className="card p-1 mb-2 bg-light">
                 <Link
-                  to={`/projects/${project._id}`}
+                  to={`/projects/${project?._id}`}
                   className="text-center"
                   style={{ textDecoration: "none" }}
                 >
-                  {project.name}
+                  {project?.name}
                 </Link>
               </div>
             </div>

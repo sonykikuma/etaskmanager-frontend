@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTeams } from "../features/teamSlice";
 import TeamForm from "../components/TeamForm";
+import Footer from "../components/Footer";
 
 const Teams = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const Teams = () => {
   useEffect(() => {
     dispatch(fetchTeams());
   }, [dispatch]);
-  //console.log(teams);
+  console.log(teams);
 
   const handleFormToggle = () => {
     setShowForm((prev) => !prev);
@@ -35,7 +36,7 @@ const Teams = () => {
               <h5> Back to Dashboard</h5>
             </Link>
           </div>
-          <div className="col-md-9 ml-3">
+          <div className="col-md-9 ml-3 mb-3">
             <h3 className=" py-2">Team List</h3>
             {teams?.map((team, index) => (
               <div className="card px-3 py-2 mb-2" key={team?._id}>
@@ -49,6 +50,7 @@ const Teams = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

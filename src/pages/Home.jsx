@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import Header from "../components/Header";
 import Projects from "../components/Projects";
 import Tasks from "../components/Tasks";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const location = useLocation();
@@ -58,7 +59,7 @@ const Home = () => {
       <Header />
       <hr />
 
-      <div className="container">
+      <div className="container mb-4">
         <h1 className="text-center py-3">
           {" "}
           {/* {loggedinuser.charAt(0).toUpperCase() + loggedinuser.slice(1)}'s */}
@@ -99,6 +100,7 @@ const Home = () => {
 
         <ToastContainer />
       </div>
+      <Footer />
     </>
   );
 };

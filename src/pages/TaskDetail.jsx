@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import { fetchTasks } from "../features/taskSlice";
 import { getDueDate } from "../utils";
 import { Link, useParams } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const TaskDetail = () => {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const TaskDetail = () => {
     <>
       <Header />
       <hr />
-      <div className="container">
+      <div className="container mb-3">
         <h1 className="text-center py-3">Task: {taskData?.name}</h1>
         <hr />
 
@@ -100,6 +101,7 @@ const TaskDetail = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

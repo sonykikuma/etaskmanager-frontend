@@ -14,6 +14,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Footer from "../components/Footer";
 
 // Register chart components
 ChartJS.register(
@@ -328,6 +329,7 @@ const Reports = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

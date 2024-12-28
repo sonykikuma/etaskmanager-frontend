@@ -7,6 +7,7 @@ import { fetchTags } from "../features/tagsSlice";
 import { getDueDate } from "../utils";
 import { Link, useParams } from "react-router-dom";
 import { fetchOwners } from "../features/ownersSlice";
+import Footer from "../components/Footer";
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -160,12 +161,13 @@ const ProjectDetail = () => {
                 </div>
               </Link>
             ))}
-            <Link to="/newTask" className="btn btn-primary">
+            <Link to="/newTask" className="btn btn-primary mb-3">
               Add New Task
             </Link>
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

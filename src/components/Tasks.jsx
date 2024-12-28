@@ -21,7 +21,7 @@ const Tasks = () => {
   const filteredTasks =
     statusFilter === "all"
       ? renderedTasks
-      : renderedTasks.filter((task) => task.calculatedStatus === statusFilter);
+      : renderedTasks?.filter((task) => task.calculatedStatus === statusFilter);
 
   const handleFilterChange = (newFilter) => {
     // setStatusFilter(event.target.value); this is for filter if we use select option
