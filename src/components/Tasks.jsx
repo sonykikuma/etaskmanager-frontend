@@ -16,7 +16,7 @@ const Tasks = () => {
   }, [dispatch]);
 
   const renderedTasks = tasks?.tasks;
-  //console.log("tasks", renderedTasks);
+  console.log("tasks", renderedTasks);
 
   const filteredTasks =
     statusFilter === "all"
@@ -66,12 +66,12 @@ const Tasks = () => {
         >
           In Progress
         </button>
-        <button
+        {/* <button
           onClick={() => handleFilterChange("To Do")}
           className="btn btn-primary mx-1"
         >
           To Do
-        </button>
+        </button> */}
         {/* <button
           onClick={() => handleFilterChange("all")}
           className="btn btn-danger"

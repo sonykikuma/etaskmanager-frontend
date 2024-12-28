@@ -180,6 +180,7 @@ const TaskForm = () => {
         {status === "creating" && <p>Creating task...</p>}
         {status === "error" && <p>Error: {error}</p>}
       </div>
+      <Footer />
     </>
   );
 };
