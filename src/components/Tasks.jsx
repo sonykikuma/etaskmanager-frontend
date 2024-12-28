@@ -15,7 +15,7 @@ const Tasks = () => {
     dispatch(fetchTasks());
   }, [dispatch]);
 
-  const renderedTasks = tasks.tasks;
+  const renderedTasks = tasks?.tasks;
   //console.log("tasks", renderedTasks);
 
   const filteredTasks =
