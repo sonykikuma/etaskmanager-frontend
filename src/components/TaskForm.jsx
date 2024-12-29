@@ -9,6 +9,7 @@ import Header from "./Header";
 import { fetchTeams } from "../features/teamSlice";
 import { fetchOwners } from "../features/ownersSlice";
 import { fetchTags } from "../features/tagsSlice";
+import Footer from "./Footer";
 
 const TaskForm = () => {
   const dispatch = useDispatch();
@@ -98,7 +99,7 @@ const TaskForm = () => {
     <>
       <Header />
       <hr />
-      <div className="container">
+      <div className="container mb-3">
         <h2 className="text-center py-3"> Create New Task</h2>
         <div className="bg-light rounded shadow px-3 py-3">
           <form onSubmit={handleSubmit}>
