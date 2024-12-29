@@ -14,7 +14,7 @@ export const fetchProjects = createAsyncThunk(
         },
       });
       //console.log("res.data", res.data);
-      return res.data;
+      return res?.data;
     } catch (err) {
       console.log(err);
       //return rejectWithValue(err.res?.data || err.message);

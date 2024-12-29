@@ -16,7 +16,7 @@ const Tasks = () => {
   }, [dispatch]);
 
   const renderedTasks = tasks?.tasks;
-  console.log("tasks", renderedTasks);
+  //console.log("tasks", renderedTasks);
 
   const filteredTasks =
     statusFilter === "all"

@@ -12,7 +12,7 @@ export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async () => {
       },
     });
     // console.log("res.data", res.data);
-    return res.data;
+    return res?.data;
   } catch (err) {
     console.log(err);
   }

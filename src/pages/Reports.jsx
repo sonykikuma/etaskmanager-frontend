@@ -35,11 +35,12 @@ const Reports = () => {
   const [doughnutData, setDoughnutData] = useState(null);
   const [teamChartData, setTeamChartData] = useState(null); // New state for team task chart
   const [ownerChartData, setOwnerChartData] = useState(null); // New state for owner tasks chart
+  const [tasksLastWeek, setTasksLastWeek] = useState([]);
 
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
-  console.log(tasks);
+  //console.log(tasks);
 
   useEffect(() => {
     if (tasks) {
@@ -70,31 +71,21 @@ const Reports = () => {
       // 3.Calculate tasks closed by each team
       const teamTaskCount = tasks.reduce((acc, task) => {
         if (task.calculatedStatus === "Completed") {
-          const teamName = task.team?.name || "Unassigned"; // Use "Unassigned" if no team name
+          const teamName = task.team?.name || "Unassigned"; // Used "Unassigned" if no team name
           acc[teamName] = (acc[teamName] || 0) + 1;
         }
         return acc;
       }, {});
 
-      //   const completedTasks1 = tasks.filter(
-      //     (task) => task.calculatedStatus === "Completed"
-      //   );
-
-      //   const teamTaskCount = completedTasks1.reduce((acc, task) => {
-      //     const teamName = task?.team?.name || "Unassigned"; // Default to "Unassigned" if no team name
-      //     acc[teamName] = (acc[teamName] || 0) + 1;
-      //     return acc;
-      //   }, {});
-
       const teamNames = Object.keys(teamTaskCount);
       const taskCounts = Object.values(teamTaskCount);
-
+      //console.log(teamTaskCount);
       setTeamChartData({
         labels: teamNames,
         datasets: [
           {
             label: "Tasks Closed by Team",
-            data: taskCounts, // y-axis will be the number of tasks closed by each team
+            data: taskCounts,
             backgroundColor: "rgba(75, 192, 192, 0.5)",
             borderColor: "rgba(75, 192, 192, 1)",
             borderWidth: 1,
@@ -107,14 +98,16 @@ const Reports = () => {
       const oneWeekAgo = new Date();
       oneWeekAgo.setDate(now.getDate() - 7);
 
-      const tasksLastWeek = tasks.filter(
+      const filteredTasksLastWeek = tasks.filter(
         (task) =>
           task.calculatedStatus === "Completed" &&
           new Date(task.updatedAt) >= oneWeekAgo &&
           new Date(task.updatedAt) <= now
       );
 
-      if (tasksLastWeek.length === 0) {
+      setTasksLastWeek(filteredTasksLastWeek);
+
+      if (filteredTasksLastWeek.length === 0) {
         setNoWorkDone(true);
         setChartData(null);
         return;
@@ -122,18 +115,14 @@ const Reports = () => {
 
       setNoWorkDone(false);
 
-      const taskNames = tasksLastWeek.map((task) => task.name);
-      const taskDates = tasksLastWeek.map((task) =>
-        new Date(task.updatedAt).toLocaleDateString()
-      );
+      const taskNames = filteredTasksLastWeek.map((task) => task.name);
 
-      // Set chart data
       setChartData({
         labels: taskNames,
         datasets: [
           {
             label: "Completion Dates",
-            data: taskDates.map((_, index) => index + 1), // Dummy data for bar heights
+            data: filteredTasksLastWeek.map((_, index) => index + 1),
             backgroundColor: "rgba(75, 192, 192, 0.5)",
             borderColor: "rgba(75, 192, 192, 1)",
             borderWidth: 1,
@@ -143,23 +132,38 @@ const Reports = () => {
 
       // 4. Calculate tasks closed by each owner
       const ownerTaskCount = tasks.reduce((acc, task) => {
-        if (task.calculatedStatus === "Completed") {
+        // console.log("aabha");
+        if (
+          task.calculatedStatus === "Completed" &&
+          Array.isArray(task.owners)
+        ) {
+          // console.log("Inspecting Task:", task);
           task.owners.forEach((owner) => {
+            // console.log("Inspecting Owner:", owner);
             const ownerName = owner.name || "Unassigned";
             acc[ownerName] = (acc[ownerName] || 0) + 1;
           });
         }
+        if (!task.owners || !Array.isArray(task.owners)) {
+          console.warn("Task has no valid owners:", task);
+        }
+
         return acc;
       }, {});
 
       const ownerNames = Object.keys(ownerTaskCount);
       const ownerCounts = Object.values(ownerTaskCount);
+      //console.log(ownerTaskCount);
 
       setOwnerChartData({
         labels: ownerNames,
+        // labels: ["Owner 1", "Owner 2", "Owner 3"], // Test labels
+
         datasets: [
           {
             label: "Tasks Closed by Owner",
+            //data: [5, 10, 15], // Test data
+
             data: ownerCounts,
             backgroundColor: "rgba(153, 102, 255, 0.5)",
             borderColor: "rgba(153, 102, 255, 1)",
@@ -167,8 +171,10 @@ const Reports = () => {
           },
         ],
       });
+      // console.log("Team Task Data:", teamTaskCount);
     }
   }, [tasks]);
+  //console.log("Chart Data for Last Week Tasks:", chartData);
 
   return (
     <>
@@ -190,7 +196,7 @@ const Reports = () => {
           <div className="col-md-9 ml-3">
             <h3 className=" py-2">Report Overview</h3>
             <hr />
-            <div className="mt-3">
+            <div className="mt-3 mb-3">
               <h3>Total Work Done Last Week:</h3>
               {noWorkDone ? (
                 <p>No work done last week.</p>
@@ -228,7 +234,7 @@ const Reports = () => {
               )}
             </div>
             <hr />
-            <div className="mt-3">
+            <div className="my-3">
               <h3>Total Days of Work Pending:</h3>
               {doughnutData ? (
                 <Doughnut
@@ -250,7 +256,8 @@ const Reports = () => {
                 <p>Loading doughnut chart...</p>
               )}
             </div>
-            <div className="mt-5">
+            <hr />
+            <div className="my-3">
               <h3>Tasks Closed by Team:</h3>
               {teamChartData ? (
                 <Bar
@@ -289,7 +296,8 @@ const Reports = () => {
                 // <p>Loading team task chart...</p>
               )}
             </div>
-            <div className="mt-5">
+            <hr />
+            <div className="my-3">
               <h3>Tasks Closed by Owner:</h3>
               {ownerChartData ? (
                 <Bar
