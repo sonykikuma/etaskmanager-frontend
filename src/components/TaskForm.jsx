@@ -9,7 +9,9 @@ import Header from "./Header";
 import { fetchTeams } from "../features/teamSlice";
 import { fetchOwners } from "../features/ownersSlice";
 import { fetchTags } from "../features/tagsSlice";
+import { ToastContainer } from "react-toastify";
 import Footer from "./Footer";
+import { handleError, handleSuccess } from "../utils";
 
 const TaskForm = () => {
   const dispatch = useDispatch();
@@ -51,7 +53,7 @@ const TaskForm = () => {
       !dueDate ||
       !time
     ) {
-      alert("Please fill out all fields");
+      handleError("Please fill out all fields");
       return;
     }
     const taskData = {
@@ -66,6 +68,7 @@ const TaskForm = () => {
     console.log("Task Data:", taskData);
 
     dispatch(createTask(taskData));
+    handleSuccess("Task created successfully!");
     setTitle("");
     setTeam(null);
     setProject(null);
@@ -181,6 +184,8 @@ const TaskForm = () => {
         {status === "creating" && <p>Creating task...</p>}
         {status === "error" && <p>Error: {error}</p>}
       </div>
+      <ToastContainer />
+
       <Footer />
     </>
   );

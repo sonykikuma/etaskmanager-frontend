@@ -27,8 +27,8 @@ export const createTask = createAsyncThunk(
           Authorization: `${token}`,
         },
       });
-      console.log("new: ", res.data.newTask);
-      return res.data.newTask;
+      console.log("new: ", res.data);
+      return res.data;
     } catch (error) {
       console.error("Error creating task:", error.response?.data || error);
       throw error; // Ensure the error propagates to Redux

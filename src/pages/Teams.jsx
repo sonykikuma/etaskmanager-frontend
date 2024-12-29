@@ -13,7 +13,7 @@ const Teams = () => {
   useEffect(() => {
     dispatch(fetchTeams());
   }, [dispatch]);
-  console.log(teams);
+  // console.log(teams);
 
   const handleFormToggle = () => {
     setShowForm((prev) => !prev);
@@ -43,7 +43,7 @@ const Teams = () => {
                 <p>{`Team ${index + 1}: ${team?.name}`}</p>
               </div>
             ))}
-            <button className="btn btn-primary mt-3" onClick={handleFormToggle}>
+            <button className="btn btn-primary mb-3" onClick={handleFormToggle}>
               Add New Team
             </button>
             {showForm && <TeamForm onClose={handleFormToggle} />}
