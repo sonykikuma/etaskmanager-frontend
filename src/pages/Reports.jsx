@@ -29,7 +29,7 @@ ChartJS.register(
 
 const Reports = () => {
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.task.tasks.tasks);
+  const tasks = useSelector((state) => state.task.tasks);
   const [chartData, setChartData] = useState(null);
   const [noWorkDone, setNoWorkDone] = useState(false);
   const [doughnutData, setDoughnutData] = useState(null);
@@ -40,7 +40,7 @@ const Reports = () => {
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
-  //console.log(tasks);
+  console.log(tasks);
 
   useEffect(() => {
     if (tasks) {
