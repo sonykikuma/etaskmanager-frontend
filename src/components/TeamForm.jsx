@@ -25,7 +25,7 @@ const TeamForm = ({ onClose }) => {
   };
 
   return (
-    <div className="">
+    <div className=" container mb-3 bg-light shadow">
       <form onSubmit={submitHandler}>
         <div className="mb-3">
           <label>Name</label>
@@ -46,13 +46,13 @@ const TeamForm = ({ onClose }) => {
             onChange={(e) => setDesc(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary mb-3">
           Create Team
         </button>
-        <span className="me-2"></span>
+        <span className="me-2 mb-3"></span>
         <button
           type="button"
-          className="btn btn-secondary ml-2"
+          className="btn btn-secondary ml-2 mb-3"
           onClick={onClose}
         >
           Cancel

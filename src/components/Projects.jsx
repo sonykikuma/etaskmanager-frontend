@@ -15,7 +15,7 @@ const Projects = () => {
   }, [dispatch]);
 
   const renderedProjects = projects?.allProjects;
-  //console.log("projects", renderedProjects);
+  console.log("projects", renderedProjects);
 
   return (
     <>

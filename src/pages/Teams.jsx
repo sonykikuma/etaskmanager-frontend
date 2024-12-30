@@ -39,7 +39,7 @@ const Teams = () => {
           <div className="col-md-9 ml-3 mb-3">
             <h3 className=" py-2">Team List</h3>
             {teams?.map((team, index) => (
-              <div className="card px-3 py-2 mb-2" key={team?._id}>
+              <div className="card px-3 py-2 mb-2 bg-light" key={team?._id}>
                 <p>{`Team ${index + 1}: ${team?.name}`}</p>
               </div>
             ))}
