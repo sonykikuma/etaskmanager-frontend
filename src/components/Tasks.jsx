@@ -6,17 +6,21 @@ import { Link } from "react-router-dom";
 
 const Tasks = () => {
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.task.tasks);
-  const status = useSelector((state) => state.task.status);
-  const error = useSelector((state) => state.task.error);
+  // const tasks = useSelector((state) => {
+  //   console.log(state.task);
+  // });
+
+  const { tasks, status, error } = useSelector((state) => state.task);
+  // const status = useSelector((state) => state.task.status);
+  // const error = useSelector((state) => state.task.error);
   const [statusFilter, setStatusFilter] = useState("all");
 
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
 
-  const renderedTasks = tasks?.tasks;
-  //console.log("tasks", renderedTasks);
+  const renderedTasks = tasks;
+  //console.log("tasks", tasks);
 
   const filteredTasks =
     statusFilter === "all"
