@@ -52,7 +52,7 @@ export const taskSlice = createSlice({
     });
     builder.addCase(fetchTasks.fulfilled, (state, action) => {
       state.status = "success";
-      state.tasks = action.payload.tasks;
+      state.tasks = action.payload?.tasks;
       console.log("action.payload", action.payload);
     });
 

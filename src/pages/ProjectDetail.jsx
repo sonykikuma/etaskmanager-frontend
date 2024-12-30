@@ -31,7 +31,7 @@ const ProjectDetail = () => {
   }, [dispatch]);
 
   const renderedProjects = projects?.allProjects;
-  const renderedTasks = tasks.tasks;
+  const renderedTasks = tasks;
   const renderedTags = tags1?.allTags?.map((tag) => tag.name);
   const ownerOptions = owners1?.data?.map((owner) => owner.name);
 
@@ -39,11 +39,11 @@ const ProjectDetail = () => {
     (project) => String(project._id) === String(projectId)
   );
   //console.log(renderedTasks, projectData);
-  const projectTasks = renderedTasks?.filter(
+  const projectTasks = tasks?.filter(
     (task) => String(task.project?._id) === String(projectId)
   );
 
-  const filteredTasks = projectTasks.filter((task) => {
+  const filteredTasks = projectTasks?.filter((task) => {
     const matchesOwner =
       !selectedOwner ||
       task.owners.some((owner) => owner.name === selectedOwner);

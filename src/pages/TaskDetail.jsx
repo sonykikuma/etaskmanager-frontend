@@ -12,11 +12,9 @@ const TaskDetail = () => {
   const tasks = useSelector((state) => state.task.tasks);
   const [isCompleted, setIsCompleted] = useState(false);
 
-  const renderedTasks = tasks?.tasks;
+  //const renderedTasks = tasks;
 
-  const taskData = renderedTasks?.find(
-    (task) => String(task._id) === String(taskId)
-  );
+  const taskData = tasks?.find((task) => String(task._id) === String(taskId));
   console.log(taskData);
 
   // Function to calculate time remaining
