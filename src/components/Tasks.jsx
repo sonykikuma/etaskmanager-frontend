@@ -87,22 +87,29 @@ const Tasks = () => {
       {status === "loading" && <p>Loading....</p>}
       {error && <p>An error occured while fetching tasks</p>}
 
-      {filteredTasks?.map((task, index) => (
-        <Link
-          to={`/tasks/${task._id}`}
-          key={task._id}
-          style={{ textDecoration: "none" }}
-        >
-          <div className="card bg-light mb-2 px-3 py-3">
-            <p>
-              {`Task ${index + 1}`}: {task?.name}{" "}
-            </p>
-            <p>{`Due: ${getDueDate(task?.createdAt, task?.timeToComplete)}`}</p>
-            <p>{`Owners: ${task?.owners?.map((o) => o.name).join(", ")}`}</p>
-            <p>{`Status: ${task?.calculatedStatus}`}</p>
-          </div>
-        </Link>
-      ))}
+      {filteredTasks && filteredTasks.length > 0
+        ? filteredTasks.map((task, index) => (
+            <Link
+              to={`/tasks/${task._id}`}
+              key={task._id}
+              style={{ textDecoration: "none" }}
+            >
+              <div className="card bg-light mb-2 px-3 py-3">
+                <p>
+                  {`Task ${index + 1}`}: {task?.name}{" "}
+                </p>
+                <p>{`Due: ${getDueDate(
+                  task?.createdAt,
+                  task?.timeToComplete
+                )}`}</p>
+                <p>{`Owners: ${task?.owners
+                  ?.map((o) => o.name)
+                  .join(", ")}`}</p>
+                <p>{`Status: ${task?.calculatedStatus}`}</p>
+              </div>
+            </Link>
+          ))
+        : " No Tasks found"}
       <Link to="/newTask" className="btn btn-primary">
         Add New Task
       </Link>
