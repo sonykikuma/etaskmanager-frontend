@@ -40,7 +40,7 @@ const Reports = () => {
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
-  console.log(tasks);
+  //console.log("all tasks", tasks);
 
   useEffect(() => {
     if (tasks) {
@@ -48,9 +48,11 @@ const Reports = () => {
       const completedTasks = tasks.filter(
         (task) => task.calculatedStatus === "Completed"
       );
+      //console.log("completed tasks", completedTasks);
       const pendingTasks = tasks.filter(
         (task) => task.calculatedStatus !== "Completed"
       );
+      //console.log("pending tasks", pendingTasks);
 
       //2. Doughnut chart data
       setDoughnutData({
@@ -95,15 +97,16 @@ const Reports = () => {
 
       //related to 1st chart- Filter tasks completed last week
       const now = new Date();
-      const oneWeekAgo = new Date();
+      let oneWeekAgo = new Date();
       oneWeekAgo.setDate(now.getDate() - 7);
 
       const filteredTasksLastWeek = tasks.filter(
         (task) =>
           task.calculatedStatus === "Completed" &&
-          new Date(task.updatedAt) >= oneWeekAgo &&
+          new Date(task.updatedAt) <= oneWeekAgo &&
           new Date(task.updatedAt) <= now
       );
+      console.log("chart1", filteredTasksLastWeek);
 
       setTasksLastWeek(filteredTasksLastWeek);
 
@@ -116,7 +119,7 @@ const Reports = () => {
       setNoWorkDone(false);
 
       const taskNames = filteredTasksLastWeek.map((task) => task.name);
-
+      console.log("tasknames", taskNames);
       setChartData({
         labels: taskNames,
         datasets: [
@@ -131,15 +134,16 @@ const Reports = () => {
       });
 
       // 4. Calculate tasks closed by each owner
+      //console.log("aabha", tasks);
+
       const ownerTaskCount = tasks.reduce((acc, task) => {
-        // console.log("aabha");
         if (
           task.calculatedStatus === "Completed" &&
           Array.isArray(task.owners)
         ) {
-          // console.log("Inspecting Task:", task);
+          //  console.log("Inspecting Task:", task);
           task.owners.forEach((owner) => {
-            // console.log("Inspecting Owner:", owner);
+            //   console.log("Inspecting Owner:", owner);
             const ownerName = owner.name || "Unassigned";
             acc[ownerName] = (acc[ownerName] || 0) + 1;
           });
@@ -157,12 +161,12 @@ const Reports = () => {
 
       setOwnerChartData({
         labels: ownerNames,
-        // labels: ["Owner 1", "Owner 2", "Owner 3"], // Test labels
+        //labels: ["Owner 1", "Owner 2", "Owner 3"], // Test labels
 
         datasets: [
           {
             label: "Tasks Closed by Owner",
-            //data: [5, 10, 15], // Test data
+            // data: [5, 10, 15], // Test data
 
             data: ownerCounts,
             backgroundColor: "rgba(153, 102, 255, 0.5)",
@@ -171,10 +175,9 @@ const Reports = () => {
           },
         ],
       });
-      // console.log("Team Task Data:", teamTaskCount);
     }
+    console.log("Chart Data for owner:", ownerChartData);
   }, [tasks]);
-  //console.log("Chart Data for Last Week Tasks:", chartData);
 
   return (
     <>

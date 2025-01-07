@@ -19,7 +19,12 @@ const Tasks = () => {
     dispatch(fetchTasks());
   }, [dispatch]);
 
-  const renderedTasks = tasks;
+  useEffect(() => {
+    if (tasks == undefined) {
+      dispatch(fetchTasks());
+    }
+  }, [tasks]);
+
   //console.log("tasks", tasks);
 
   const filteredTasks =

@@ -80,6 +80,7 @@ const Login = () => {
               placeholder="email"
               onChange={changeHandler}
               className="form-control"
+              autoComplete="email"
             />
           </div>
           <div className="mb-3">
@@ -91,6 +92,7 @@ const Login = () => {
               placeholder="password"
               onChange={changeHandler}
               className="form-control"
+              autoComplete="current-password"
             />
           </div>
           <button className="btn btn-primary">Login</button>
