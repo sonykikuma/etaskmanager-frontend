@@ -208,7 +208,7 @@ const Reports = () => {
                   key={chartData ? "bar-chart" : ""}
                   data={chartData}
                   options={{
-                    indexAxis: "y", // Switch axis: Task names on Y-axis
+                    indexAxis: "y", // Y-axis for task names
                     responsive: true,
                     plugins: {
                       legend: {
@@ -226,11 +226,44 @@ const Reports = () => {
                             tasksLastWeek[index]?.updatedAt &&
                             new Date(
                               tasksLastWeek[index].updatedAt
-                            ).toLocaleDateString(), // Dates on X-axis
+                            ).toLocaleDateString(),
+                        },
+                      },
+                      y: {
+                        ticks: {
+                          font: {
+                            size: 10, // Smaller font size
+                          },
+                          autoSkip: false, // Show all labels
                         },
                       },
                     },
                   }}
+
+                  // options={{
+                  //   indexAxis: "y", // Switch axis: Task names on Y-axis
+                  //   responsive: true,
+                  //   plugins: {
+                  //     legend: {
+                  //       position: "top",
+                  //     },
+                  //     title: {
+                  //       display: true,
+                  //       text: "Tasks Completed Last Week (Dates on X-axis)",
+                  //     },
+                  //   },
+                  //   scales: {
+                  //     x: {
+                  //       ticks: {
+                  //         callback: (value, index) =>
+                  //           tasksLastWeek[index]?.updatedAt &&
+                  //           new Date(
+                  //             tasksLastWeek[index].updatedAt
+                  //           ).toLocaleDateString(), // Dates on X-axis
+                  //       },
+                  //     },
+                  //   },
+                  // }}
                 />
               ) : (
                 <p>Loading chart data...</p>
