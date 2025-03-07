@@ -66,7 +66,7 @@ const Login = () => {
         className="container  py-4 shadow"
         style={{ width: "20rem", height: "24rem" }}
       >
-        <h1 className="text-center"> Workasana Login </h1>
+        <h1 className="text-center"> WorkSync Login </h1>
         <form
           className="d-flex align-items-center  flex-column"
           onSubmit={submitHandler}

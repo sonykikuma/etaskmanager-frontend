@@ -67,7 +67,7 @@ const Signup = () => {
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
       <div className="container  py-3 shadow" style={{ width: "20rem" }}>
-        <h1 className="text-center">Workasana SignUp</h1>
+        <h1 className="text-center">WorkSync SignUp</h1>
         <form
           onSubmit={submitHandler}
           className="d-flex align-items-center justify-content-center flex-column"

@@ -25,35 +25,6 @@ const Home = () => {
     }
   }, [location.state]);
 
-  //   const logoutHandler = () => {
-  //   localStorage.removeItem("token");
-  //   localStorage.removeItem("loggedinuser");
-  //   handleSuccess("user logged out");
-  //   setTimeout(() => {
-  //     navigate("/login");
-  //   }, 1000);
-  // };
-
-  // const fetchProducts = async () => {
-  //   try {
-  //     const url = "http://localhost:3000/products";
-  //     const headers = {
-  //       headers: {
-  //         Authorization: localStorage.getItem("token"),
-  //       },
-  //     };
-  //     const res = await fetch(url, headers);
-  //     const result = await res.json();
-  //     // console.log(result);
-  //     setProducts(result);
-  //   } catch (err) {
-  //     handleError(err);
-  //   }
-  // };
-  // useEffect(() => {
-  //   fetchProducts();
-  // }, []);
-
   return (
     <>
       <Header />
@@ -63,7 +34,7 @@ const Home = () => {
         <h1 className="text-center py-3">
           {" "}
           {/* {loggedinuser.charAt(0).toUpperCase() + loggedinuser.slice(1)}'s */}
-          Workasana Dashboard
+          WorkSync Dashboard
         </h1>
         <div className="row">
           <div

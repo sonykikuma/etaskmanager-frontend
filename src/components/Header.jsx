@@ -5,12 +5,12 @@ import { logoutHandler } from "../utils";
 const Header = () => {
   const navigate = useNavigate();
   return (
-    <header className="bg-light w-100">
+    <header className="bg-light ">
       <nav className="navbar navbar-expand-lg ">
         <div className="container d-flex align-items-center justify-content-between">
           {/* <div className="container"> */}
           <NavLink to="/home" className="navbar-brand fw-bold text-primary ">
-            Workasana
+            WorkSync
           </NavLink>
           <button
             className="navbar-toggler align-self-center"
