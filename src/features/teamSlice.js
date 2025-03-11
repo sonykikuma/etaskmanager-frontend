@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseUrl = "https://wokasana-backend.vercel.app";
+const baseUrl = "https://tasker-backend-mocha.vercel.app";
+//const baseUrl = "https://wokasana-backend.vercel.app";
 const token = localStorage.getItem("token");
 
 export const fetchTeams = createAsyncThunk("teams/fetchTeams", async () => {
