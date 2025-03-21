@@ -1,8 +1,26 @@
-# React + Vite
+📌 WorkSync- A Task Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A task management system built with the MERN stack and Redux, enabling users to create and manage teams, projects, and reports efficiently.
 
-Currently, two official plugins are available:
+🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+✅ User Authentication (Signup/Login)
+
+✅ Create and Manage Teams
+
+✅ Create and Track Projects
+
+✅ Generate Reports Based on Data
+
+🛠️ Tech Stack
+
+Frontend: React, Redux Toolkit, Bootstrap 5
+Backend: Node.js, Express.js
+Database: MongoDB
+Routing: React Router
+Deployment: Vercel
+🔧 Setup Instructions
+
+1. Clone the repository
+2. Install dependencies
+3. Run the development server
