@@ -14,7 +14,7 @@ A task management system built with the MERN stack, Bootstrap and Redux, enablin
 
 🛠️ Tech Stack
 
-Frontend: React, Redux Toolkit, Bootstrap 5
+Frontend: React, Redux Toolkit, Bootstrap 5, React-chartjs
 Backend: Node.js, Express.js
 Database: MongoDB
 Routing: React Router
